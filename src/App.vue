@@ -17,28 +17,34 @@ const selectAgree = () => {
   <div class="container">
     <div class="card">
       <h1 class="text-white">Cats Rock!</h1>
-      <template v-if="isAgree">
-        <p class="text-white">You said you agree.</p>
-      </template>
-      <template v-else-if="isDecline">
-        <p class="text-white">You said you don’t agree.</p>
-      </template>
-      <template v-else>
-        <p class="text-white">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged.
-        </p>
-        <div class="buttons-container">
-          <button @click="selectAgree" class="bg-primary">I agree</button>
-          <button @click="selectDecline" class="bg-secondary decline-btn">
-            I do not
-          </button>
+      <transition name="fade">
+        <template v-if="isAgree">
+          <p class="text-white">You said you <span> agree. </span></p>
+        </template>
+      </transition>
+      <transition name="fade">
+        <template v-if="isDecline">
+          <p class="text-white">You said you <span> don’t agree. </span></p>
+        </template>
+      </transition>
+      <transition name="fade">
+        <div v-if="!isAgree && !isDecline">
+          <p class="text-white">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </p>
+          <div class="buttons-container">
+            <button @click="selectAgree" class="bg-primary">I agree</button>
+            <button @click="selectDecline" class="bg-secondary decline-btn">
+              I do not
+            </button>
+          </div>
         </div>
-      </template>
+      </transition>
     </div>
   </div>
 </template>
@@ -68,7 +74,7 @@ const selectAgree = () => {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .buttons-container {
     margin-top: 2rem;
   }
@@ -95,7 +101,21 @@ p {
   font-family: "Roboto";
 }
 
+span {
+  font-weight: 700;
+}
+
 .decline-btn {
   margin-top: 1rem;
+}
+
+/* Transition classes */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
