@@ -53,7 +53,7 @@ a. Optimize Images
 - Compress images to reduce their file size without losing quality.
 - Lazy load images to load them only when they are in the viewport.
 
-c. Use a Content Delivery Network (CDN)
+b. Use a Content Delivery Network (CDN)
 
 - Serve static assets like images, CSS, and JavaScript files through a CDN to reduce latency. (it's perfect when serving users around the world)
 
